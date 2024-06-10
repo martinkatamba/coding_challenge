@@ -1,0 +1,6 @@
+**/.git
+Dockerfile
+env
+__pycache__
+.env
+.git
