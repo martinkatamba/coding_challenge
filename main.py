@@ -2,10 +2,6 @@ from typing import Optional
 from fastapi import FastAPI
 
 from src.dependencies import set_up_migrations
-from src.schemas import ItemCreate, ItemStatus, UserCreate, UserId
-from src.dependencies import database
-from src.utils import add_history, create_user, create_user_item
-from src import models
 from routes import users, items
 
 app = FastAPI()
