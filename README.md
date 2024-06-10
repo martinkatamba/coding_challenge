@@ -43,4 +43,5 @@ http://127.0.0.1:8000/docs
 ### Recommendations
 `- adding authentication using jwt`
 `- adding tests using pytest & httpx`
+`- adding extra type validation on email using pydantic`
 `- injecting envs better instead of puting them directly in code`
