@@ -44,4 +44,5 @@ http://127.0.0.1:8000/docs
 `- adding authentication using jwt`
 `- adding tests using pytest & httpx`
 `- adding extra type validation on email using pydantic`
+`- adding checks not to add user who already exits and giving a 409 status code as opposed to a 500`
 `- injecting envs better instead of puting them directly in code`
