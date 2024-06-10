@@ -36,3 +36,8 @@ If the DB is accessible, tables will be automatically created when the app start
 
 ### auto generated docs
 http://127.0.0.1:8000/docs
+
+### Recommendations
+`- adding authentication using jwt`
+`- adding tests using pytest & httpx`
+`- injecting envs better instead of puting them directly in code`
