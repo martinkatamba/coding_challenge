@@ -7,11 +7,11 @@ services:
     build: .
     ports:
       - "8000:8000"
-    command: "uvicorn main:app --host 0.0.0.0 --port 8000"
+    #command: "uvicorn main:app --host 0.0.0.0 --port 8000"
     depends_on:
       - db
     networks:
-      - mysql_network  #  custom network
+      - backend
   db:
     image: mysql:latest
     # referencing the .env file
@@ -24,12 +24,11 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql  #  volume name and host directory path
     networks:
-      - mysql_network  #  custom network
+      - backend
 volumes:
     mysql-data:
      driver: local
 
-# Define networks
 networks:
-  mysql_network:
-    driver: bridge
+  backend:
+    driver: bridge  # Use bridge network driver

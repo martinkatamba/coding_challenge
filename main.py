@@ -1,4 +1,4 @@
-from typing import Optional
+
 from fastapi import FastAPI
 
 from src.dependencies import set_up_migrations
