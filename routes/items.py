@@ -1,9 +1,9 @@
 
 
-from typing import Optional
-from fastapi import APIRouter
+from typing import List, Optional
+from fastapi import APIRouter,HTTPException
 
-from src.schemas import ItemStatus, UserId
+from src.schemas import Item, ItemStatus, UserId
 from src.utils import add_history
 from src import models
 from src.dependencies import database
@@ -14,10 +14,15 @@ router = APIRouter(
     tags=["items"],  # Define a tag for documentation purposes
 )
 
-@router.get("/{item_id}")
-def read_item(item_id: int, db:database,status: Optional[ItemStatus] = None ):
-    item = db.query(models.Item).filter(models.Item.id==item_id).first()
-    return item
+@router.get("/")
+def read_items( db:database,status: ItemStatus = None )->List[Item]:
+    if  status:
+        items = db.query(models.Item).filter(models.Item.status==status.value.lower()).all()
+    else:
+        items = db.query(models.Item).all()
+    if len(items)==0:
+       raise HTTPException(status_code=404,detail=f"no items found")
+    return [Item(**(item.__dict__)) for item in items]
 
 @router.put("/{item_id}/update")
 def change_item_status(item_id: int, status: ItemStatus,db:database):
